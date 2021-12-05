@@ -15,8 +15,24 @@ window.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    function showTabContect(i) {
+    function showTabContect(i = 0) {
         tabsContent[i].style.display = 'block';
         tabs[i].classList.add('tabheader__item_active');
     }
+
+    hideTabContent();
+    showTabContect();
+
+    tabsParent.addEventListener('click', (event) => {
+        const target = event.target;
+
+        if (target && target.classList.contains('tabheader__item')) {
+            tabs.forEach((item, i) => {
+                if (target == item) {
+                    hideTabContent();
+                    showTabContect(i);
+                }
+            });
+        }
+    });
 });
